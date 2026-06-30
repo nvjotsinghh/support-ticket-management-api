@@ -10,9 +10,11 @@ app.use(express.json());
 app.use(morgan("dev"));
 
 app.get("/health", (_req, res) => {
-  res.status(HTTP_STATUS.OK).json({
+  return res.status(HTTP_STATUS.OK).json({
     success: true,
+    statusCode: HTTP_STATUS.OK,
     message: "Support Ticket API is running",
+    timestamp: new Date().toISOString(),
   });
 });
 
