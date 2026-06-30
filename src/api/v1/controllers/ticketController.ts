@@ -134,3 +134,26 @@ export const updateTicket = (
     data: updatedTicket,
   });
 };
+
+export const deleteTicket = (
+  req: Request,
+  res: Response
+): void => {
+  const id = Number(req.params.id);
+
+  const deleted = ticketService.deleteTicket(id);
+
+  if (!deleted) {
+    res.status(HTTP_STATUS.NOT_FOUND).json({
+      success: false,
+      message: "Ticket not found",
+    });
+
+    return;
+  }
+
+  res.status(HTTP_STATUS.OK).json({
+    success: true,
+    message: "Ticket deleted successfully",
+  });
+};
