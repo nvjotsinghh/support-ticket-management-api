@@ -1,5 +1,9 @@
 import { tickets } from "../../../data/tickets";
-import { Ticket, TicketPriority } from "../models/ticket";
+import {
+  Ticket,
+  TicketPriority,
+  TicketStatus,
+} from "../models/ticket";
 
 class TicketService {
   getAllTickets(): Ticket[] {
@@ -30,6 +34,21 @@ class TicketService {
     tickets.push(newTicket);
 
     return newTicket;
+  }
+
+  updateTicket(
+    id: number,
+    updates: Partial<Ticket>
+  ): Ticket | undefined {
+    const ticket = tickets.find((t) => t.id === id);
+
+    if (!ticket) {
+      return undefined;
+    }
+
+    Object.assign(ticket, updates);
+
+    return ticket;
   }
 }
 
