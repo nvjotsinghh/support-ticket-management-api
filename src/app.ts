@@ -2,11 +2,11 @@ import express from "express";
 import morgan from "morgan";
 
 import { HTTP_STATUS } from "./constants/httpStatus";
+import ticketRoutes from "./api/v1/routes/ticketRoutes";
 
 const app = express();
 
 app.use(express.json());
-
 app.use(morgan("dev"));
 
 app.get("/health", (_req, res) => {
@@ -17,5 +17,7 @@ app.get("/health", (_req, res) => {
     timestamp: new Date().toISOString(),
   });
 });
+
+app.use("/api/v1/tickets", ticketRoutes);
 
 export default app;
