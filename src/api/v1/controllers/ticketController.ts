@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import ticketService from "../services/ticketService";
 import { HTTP_STATUS } from "../../../constants/httpStatus";
+import urgencyService from "../services/urgencyService";
 
 const validPriorities = [
   "critical",
@@ -155,5 +156,33 @@ export const deleteTicket = (
   res.status(HTTP_STATUS.OK).json({
     success: true,
     message: "Ticket deleted successfully",
+  });
+};
+export const getTicketUrgency = (
+  req: Request,
+  res: Response
+): void => {
+  const id = Number(req.params.id);
+
+  const ticket = ticketService.getTicketById(id);
+
+  if (!ticket) {
+    res.status(HTTP_STATUS.NOT_FOUND).json({
+      success: false,
+      message: "Ticket not found",
+    });
+
+    return;
+  }
+
+  const urgency =
+    urgencyService.calculateUrgency(ticket);
+
+  res.status(HTTP_STATUS.OK).json({
+    success: true,
+    data: {
+      ...ticket,
+      ...urgency,
+    },
   });
 };
