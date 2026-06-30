@@ -293,8 +293,11 @@
     "typescript": "^6.0.3"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "dev": "ts-node src/server.ts",
+  "build": "tsc",
+  "start": "node dist/server.js",
+  "test": "jest"
+},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nvjotsinghh/support-ticket-management-api.git"
