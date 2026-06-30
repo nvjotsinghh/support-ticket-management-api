@@ -2,7 +2,6 @@ import { tickets } from "../../../data/tickets";
 import {
   Ticket,
   TicketPriority,
-  TicketStatus,
 } from "../models/ticket";
 
 class TicketService {
@@ -49,6 +48,20 @@ class TicketService {
     Object.assign(ticket, updates);
 
     return ticket;
+  }
+
+  deleteTicket(id: number): boolean {
+    const index = tickets.findIndex(
+      (ticket) => ticket.id === id
+    );
+
+    if (index === -1) {
+      return false;
+    }
+
+    tickets.splice(index, 1);
+
+    return true;
   }
 }
 
