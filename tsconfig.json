@@ -2,15 +2,28 @@
   "compilerOptions": {
     "target": "ES2022",
     "module": "CommonJS",
-    "rootDir": "./src",
+    "rootDir": ".",
     "outDir": "./dist",
+
     "strict": true,
+
     "esModuleInterop": true,
     "moduleResolution": "node",
-    "skipLibCheck": true,
+
     "resolveJsonModule": true,
-    "forceConsistentCasingInFileNames": true
+
+    "skipLibCheck": true,
+
+    "types": ["node", "jest"]
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist", "test"]
+
+  "include": [
+    "src",
+    "test"
+  ],
+
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }
