@@ -6,6 +6,7 @@ import {
   getAllTickets,
   getTicketById,
   updateTicket,
+  getTicketUrgency
 } from "../controllers/ticketController";
 
 const router = Router();
@@ -13,6 +14,8 @@ const router = Router();
 router.get("/", getAllTickets);
 
 router.get("/:id", getTicketById);
+
+router.get("/:id/urgency", getTicketUrgency);
 
 router.post("/", createTicket);
 
